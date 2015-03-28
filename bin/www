@@ -26,7 +26,7 @@ var server = http.createServer(app);
 var dbpath = config.dbpath;
 mongoose.connect(dbpath, function (err) {
   if (err) {
-    return console.log('Cannot connect to database', err);
+    return console.log('Cannot connect to database :(', err);
   }
   console.log('Database connected.');
 });
