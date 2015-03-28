@@ -1,0 +1,13 @@
+var env = 'development';
+var port = process.env.PORT || '3000';
+var ipAddr = '127.0.0.1';
+var dbname = env;
+var dbpath = 'mongodb://admin:@localhost:27017/' + dbname;
+var secretSessionKey = 'keyboard cat';
+module.exports = {
+  'env': env,
+  'PORT': port,
+  'ipAddr': ipAddr,
+  'dbpath': dbpath,
+  'secretSessionKey': secretSessionKey
+};

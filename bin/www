@@ -7,12 +7,14 @@
 var app = require('../app');
 var debug = require('debug')('remember-web:server');
 var http = require('http');
+var mongoose = require('mongoose');
+var config = require('../config/config');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(config.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -21,11 +23,20 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+var dbpath = config.dbpath;
+mongoose.connect(dbpath, function (err) {
+  if (err) {
+    return console.log('Cannot connect to database', err);
+  }
+  console.log('Database connected.');
+});
+
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+var ipAddr = config.ipAddr;
+server.listen(port, ipAddr);
 server.on('error', onError);
 server.on('listening', onListening);
 

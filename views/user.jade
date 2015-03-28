@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome, #{user.userName}
+  p Your Email: #{user.userEmail}
+  p Devices: #{user.relativeDeviceIds}
+
+  form(action='/logout', method='post')
+    input(type='submit', value='logout')

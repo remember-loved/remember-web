@@ -46,3 +46,8 @@ lib-cov
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
+# secret config file
+config.js
+
+# mongodb data folder
+/data
