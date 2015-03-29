@@ -45,7 +45,10 @@ router.post('/logout', function (req, res, next){
 
 /* GET information about a device*/
 router.get('/device/:deviceId', function (req, res, next) {
-  res.render('device', {'deviceId': req.params.deviceId, 'title': 'Device'});
+  if (!req.user) {
+    return next(new Error('Please login first to view the page'));
+  }
+  res.render('device', {'deviceId': req.params.deviceId, 'title': 'Device', 'user': req.user});
 });
 
 /* POST to create a new record */
@@ -73,9 +76,10 @@ router.post('/api/records/', function (req, res, next) {
 });
 
 /* GET records for a device with sepecified deviceID */
-router.get('/api/records/:deviceId/:pageNum', function (req, res, next) {
+router.get('/api/records/:deviceId', function (req, res, next) {
   var deviceId = req.query.deviceId;
-  var pageNum = req.query.pageNum || 1;
+  var pageNum = req.body.pageNum || 1;
+  var userName = req.body.userName;
   dbManager.getRecords(deviceId, pageNum, function (err, records) {
     if (err) {
       return res.json({'error': err});

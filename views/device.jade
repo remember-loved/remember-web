@@ -3,10 +3,13 @@ extends layout
 block content
   div(class='ui segment narrow')
     h3(class='ui segment stacked inverted blue block header') Traces of #{deviceId}
-    form(class='ui form')
+    form(class='ui form', id='device-form')
       input(type='hidden', name='userName', value='#{user.userName}')
-    div(class='divided very relaxed list')
-      div(class='item', style='display: none;')
+      input(type='hidden', name='deviceId', value='#{deviceId}')
+    div(class='divided very relaxed list', id='records-list', style='display: none;')
+      div(class='item', id='sample-item', style='display: none;')
         div(class='content')
           div(class='location') Longitude: ...;Latitude: ...
           div(class='timestamp') DateTime: ...
+  
+  script(type='text/javascript', src='/javascripts/records-fetching.js')
