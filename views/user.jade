@@ -1,10 +1,27 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome, #{user.userName}
-  p Your Email: #{user.userEmail}
-  p Devices: #{user.relativeDeviceIds}
+  div(class='ui segment narrow')
+    div(class='ui segment stacked inverted blue block header')
+      h3 Welcome, #{user.userName}
+      form(action='/logout', method='post')
+        button(type='submit', class='ui icon button')
+          i(class='sign out icon')
+    form(class='ui form', action='/users/', method='post')
+      div(class='field')
+        label Email
+        div(class='ui left icon input')
+          input(type='email', name='userEmail', value='#{user.userEmail}', placeholder='Email', disabled='disabled')
+          i(class='mail icon')
+          div(class='ui corner label', style='display: none;')
+            i(class='asterisk icon')
+      div(class='field')
+        label Device
+        div(class='ui left icon input')
+          input(type='text', name='deviceId', value='#{user.relativeDeviceIds}', placeholder='Device ID', disabled='disabled')
+          i(class='mobile icon')
+          div(class='ui corner label', style='display: none;')
+            i(class='asterisk icon')
+      div(class='field')
+        input(type='submit', class='ui red submit button', value='Save', style='display: none;')
 
-  form(action='/logout', method='post')
-    input(type='submit', value='logout')

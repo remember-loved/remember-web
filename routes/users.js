@@ -42,7 +42,7 @@ router.get('/:userName', function (req, res, next) {
     if (err) {
       return next(err);
     }
-    res.render('user', {'user': user});
+    res.render('user', {'user': user, 'title': user.userName});
   });
 });
 

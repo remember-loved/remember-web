@@ -1,8 +1,16 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.ui.segment.narrow {
+  width: 70%;
+  margin: auto;
 }
 
-a {
-  color: #00B7FF;
+.login.footer {
+  text-align: right;
+}
+
+.signup.footer {
+  text-align: right;
+}
+
+.text {
+  display: inline;
 }

@@ -9,12 +9,12 @@ router.get('/', function (req, res, next) {
 
 /* GET signup page. */
 router.get('/signup', function (req, res, next) {
-  res.render('signup');
+  res.render('signup', {title: 'Sign Up'});
 });
 
 /* GET login page */
 router.get('/login', function (req, res, next) {
-  res.render('login');
+  res.render('login', {title: 'Login'});
 });
 
 router.post('/login', function(req, res, next) {
