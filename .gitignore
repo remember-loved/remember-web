@@ -47,7 +47,7 @@ lib-cov
 build/Release
 
 # secret config file
-config.js
+# config.js
 
 # mongodb data folder
 /data
