@@ -1,5 +1,7 @@
+'use strict';
 var express = require('express');
 var router = express.Router();
+var dbManager = require('../models/DBManager');
 var passport = require('passport');
 
 /* GET home page. */
@@ -35,9 +37,44 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
+/* POST to log user out */
 router.post('/logout', function (req, res, next){
   req.logout();
   res.redirect('/');
+});
+
+/* GET information about a device*/
+router.get('/device/:deviceId', function (req, res, next) {
+  res.render('device', {'deviceId': req.params.deviceId, 'title': 'Device'});
+});
+
+/* POST to create a new record */
+router.post('/api/records/', function (req, res, next) {
+  var record = {};
+  if (req.body.deviceId) {
+    record.deviceId = req.body.deviceId;
+  } else {
+    // response with error msg
+  }
+  if (req.body.location) {
+    record.location = req.body.location;
+  } else {
+    // response with err
+  }
+  if (req.body.timestamp) {
+    record.timestamp = new Date(req.body.timestamp);
+  }
+  dbManager.createRecord(record, function (err, record) {
+    if (err) {
+      return res.json({'error': err})
+    }
+    res.json({'record': record});
+  })
+});
+
+/* GET records for a device with sepecified deviceID */
+router.get('/api/records/:deviceId/:pageNum', function (req, res, next) {
+  
 });
 
 module.exports = router;

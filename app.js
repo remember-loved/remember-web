@@ -10,7 +10,6 @@ var passport = require('passport'), LocalStrategy = require('passport-local').St
 var dbManager = require('./models/DBManager');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var devices = require('./routes/devices');
 var config = require('./config/config');
 
 var app = express();
@@ -68,7 +67,6 @@ passport.deserializeUser(function(id, done) {
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/devices', devices);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
