@@ -29,7 +29,7 @@ router.post('/', function (req, res, next) {
 
 /*Get information about a device*/
 router.get('/:deviceId', function (req, res, next) {
-  res.render('device', {'deviceId': req.params.deviceId});
+  res.render('device', {'deviceId': req.params.deviceId, 'title': 'Device'});
 });
 
 module.exports = router;
