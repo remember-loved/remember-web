@@ -2,11 +2,11 @@ extends layout
 
 block content
   div(class='ui segment narrow')
-    div(class='ui segment stacked inverted blue block header')
-      h3 Traces of #{deviceId}
+    h3(class='ui segment stacked inverted blue block header') Traces of #{deviceId}
+    form(class='ui form')
+      input(type='hidden', name='userName', value='#{user.userName}')
     div(class='divided very relaxed list')
-      div(class='item')
-        i(class='star icon')
+      div(class='item', style='display: none;')
         div(class='content')
-          div(class='header') Safe
-          div Location: ... @ DateTime 
+          div(class='location') Longitude: ...;Latitude: ...
+          div(class='timestamp') DateTime: ...

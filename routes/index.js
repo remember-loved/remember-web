@@ -74,7 +74,14 @@ router.post('/api/records/', function (req, res, next) {
 
 /* GET records for a device with sepecified deviceID */
 router.get('/api/records/:deviceId/:pageNum', function (req, res, next) {
-  
+  var deviceId = req.query.deviceId;
+  var pageNum = req.query.pageNum || 1;
+  dbManager.getRecords(deviceId, pageNum, function (err, records) {
+    if (err) {
+      return res.json({'error': err});
+    }
+    return res.json({'records': records});
+  });
 });
 
 module.exports = router;
