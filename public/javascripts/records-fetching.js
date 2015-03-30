@@ -21,11 +21,16 @@ $(document).ready(function () {
     $('#records-list').show();
     var sampleItem = $('#records-list #sample-item');
     var newItem;
+    var location;
+    var locationContent;
     for (var i = data.records.length - 1; i >= 0; i--) {
       newItem = sampleItem.clone();
       newItem.show().attr('id', 'records-' + i);
-      newItem.find('.content .location').html(JSON.stringify(data.records[i].location));
-      newItem.find('.content .timestamp').html(JSON.stringify(data.records[i].timestamp));
+      location = JSON.parse(data.records[i].location.replace(new RegExp('\'', 'g'), '\"'));
+      locationContent = 'Longitute: ' + location.longitude + '; Latitude: ' + location.latitude;
+      newItem.find('.content .description .location span').html(locationContent);
+      newItem.find('.content .description .time span').html(data.records[i].timestamp.slice(0, 10)
+        + ' ' + data.records[i].timestamp.slice(11, 19));
       newItem.appendTo('#records-list');
     }
   }, function (err) {
