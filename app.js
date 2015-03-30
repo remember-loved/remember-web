@@ -28,7 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: config.secretSessionKey,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  maxAge: new Date(Date.now() + 3600000)
 }));
 
 // passport
