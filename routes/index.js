@@ -80,20 +80,19 @@ router.get('/api/records/:deviceId', function (req, res, next) {
   var deviceId = req.params.deviceId;
   var pageNum = req.query.pageNum || 1;
   var userName = req.query.userName;
-  dbManager.getUserByName(userName, function (err, user) {
+  var user = req.user;
+  if (!user) {
+    return res.json({'error': 'No such user'});
+  }
+  if (user.relativeDeviceIds.indexOf(deviceId) === -1) {
+    return res.json({'error': 'You are not allowed to view current device'});
+  }
+  dbManager.getRecords(deviceId, pageNum, function (err, records) {
     if (err) {
       return res.json({'error': err});
     }
-    if (user.relativeDeviceIds.indexOf(deviceId) === -1) {
-      return res.json({'error': new Error('You are not allowed to view current device')});
-    }
-    dbManager.getRecords(deviceId, pageNum, function (err, records) {
-      if (err) {
-        return res.json({'error': err});
-      }
-      return res.json({'records': records});
-    });
-  })
+    return res.json({'records': records});
+  });
 });
 
 module.exports = router;

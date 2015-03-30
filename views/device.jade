@@ -6,12 +6,6 @@ block content
     form(class='ui form', id='device-form')
       input(type='hidden', name='userName', value='#{user.userName}')
       input(type='hidden', name='deviceId', value='#{deviceId}')
-    div.ui.pagination.menu
-      a.icon.item(disabled='disabled')
-        i.left.arrow.icon
-      a.active.item 1
-      a.icon.item
-        i.right.arrow.icon
     div(class='ui list', id='records-list', style='display: none;')
       div(class='item', id='sample-item', style='display: none;')
         i.icon.right.triangle
