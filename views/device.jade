@@ -6,11 +6,17 @@ block content
     form(class='ui form', id='device-form')
       input(type='hidden', name='userName', value='#{user.userName}')
       input(type='hidden', name='deviceId', value='#{deviceId}')
-    div(class='divided very relaxed list', id='records-list', style='display: none;')
+    div(class='ui list', id='records-list', style='display: none;')
       div(class='item', id='sample-item', style='display: none;')
-        div(class='content')
-          div(class='location') Longitude: ...;Latitude: ...
-          div(class='timestamp') DateTime: ...
+        i.icon.right.triangle
+        div.content
+          div.description
+            div.location
+              i.icon.marker
+              span Longitude: ...;Latitude: ...
+            div.time 
+              i.icon.calendar
+              span DateTime: ...
         hr
   
   script(type='text/javascript', src='/javascripts/records-fetching.js')

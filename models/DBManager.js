@@ -4,7 +4,7 @@ var User = require('../models/User');
 
 var dbManager = {};
 
-var LIMIT_OF_RECORD_PER_CALL = 100;
+var LIMIT_OF_RECORD_PER_CALL = 20;
 
 /// UserDB related
 dbManager.getUserByName = function (userName, callback) {

@@ -1,22 +1,20 @@
 extends layout
 
 block content
-  div(class='ui segment narrow')
-    h3(class='ui segment stacked inverted blue block header') #{title}
-    form(class='ui form', action='/login', method='post')
-      div(class='field')
-        label Username
-        div(class='ui left icon input')
-          input(type='text', name='username', placeholder='Username')
-          i(class='user icon')
-      div(class='field')
-        label Password
-        div(class='ui left icon input')
-          input(type='password', name='password', placeholder='Password')
-          i(class='lock icon')
-      div(class='field')
-        input(type='submit', class='ui green submit button', value='Log In')
-    div(class='ui divider')
-    div(class='login footer')
-      div(class='text') Not a member? 
-      a(class='ui red mini button signup', href='/signup') Sign Up
+  div.nav.navbar
+    div(class='ui page grid')
+      div(class='column')
+        div.ui.menu.secondary.inverted
+          a.active.item(href='/') 
+            i(class='home icon')
+            |  Home
+          div.right.menu
+            a.item(href='/login') Login
+            a.item(href='/signup') Sign Up
+  div.masthead.segment
+    div.ui.page.grid.index
+      div.column.index
+        div.introduction
+          h1.ui.inverted.header
+            p.animated.zoom-in.animated-slow #{title}
+            b.description.animated.fade-in.animated-slow3 Help to remember you loved for longer

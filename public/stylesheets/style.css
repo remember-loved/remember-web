@@ -14,3 +14,132 @@
 .text {
   display: inline;
 }
+
+.nav.navbar {
+  position: absolute;
+  top: 0px;
+  z-index: 900;
+  left: 0%;
+  padding: 2em 0em;
+  width: 100%;
+  box-shadow: 0px 0px 0px 0px transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.masthead {
+  background-color: #009189;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 0em;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0px;
+  border-bottom: none;
+  background-color: #009189;
+  background-image: radial-gradient(farthest-corner, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  background-position: 50% 50%;
+}
+
+.ui.page.grid.index {
+  padding: 260px 0;
+}
+
+.introduction {
+  position: relative;
+  clear: both;
+  display: block;
+  text-align: center;
+}
+
+.column.index {
+  display: table;
+}
+
+.masthead.segment h1 {
+  font-size: 4em;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin: 0px 0px 0px;
+  padding-bottom: 0px;
+  -moz-perspective: 500px;
+  -webkit-perspective: 500px;
+  perspective: 500px;
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.masthead.segment h1 .description {
+  font-size: 0.5em;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated-slow {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+}
+
+.animated-slow3 {
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+.animated.fade-in {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.animated.zoom-in {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
