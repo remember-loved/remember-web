@@ -1,3 +1,74 @@
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated-slow {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+}
+
+.animated-slow3 {
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+.animated.fade-in {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.animated.zoom-in {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
+
 .ui.segment.narrow {
   width: 70%;
   margin: auto;
@@ -73,73 +144,7 @@
   font-size: 0.5em;
 }
 
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes zoomIn {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
-  }
-
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes zoomIn {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
-  }
-
-  50% {
-    opacity: 0.8;
-  }
-}
-
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.animated-slow {
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-}
-
-.animated-slow3 {
-  -webkit-animation-duration: 3s;
-  animation-duration: 3s;
-}
-
-.animated.fade-in {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-}
-
-.animated.zoom-in {
-  -webkit-animation-name: zoomIn;
-  animation-name: zoomIn;
+.record-item {
+  line-height: 200%;
+  padding: 0.5em;
 }
