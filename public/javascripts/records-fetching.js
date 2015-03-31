@@ -27,16 +27,17 @@ $(document).ready(function () {
     var sampleItem = $('#records-list #sample-item');
     var newItem;
     var location;
+    var timestamp;
     var locationContent;
-    for (var i = data.records.length - 1; i >= 0; i--) {
+    for (var i = 0; i < data.records.length; i++) {
       newItem = sampleItem.clone();
       newItem.show().attr('id', 'records-' + i);
       try {
         location = JSON.parse(data.records[i].location.replace(new RegExp('\'', 'g'), '\"'));
-        locationContent = 'Longitute: ' + location.longitude + '; Latitude: ' + location.latitude;
+        locationContent = 'Longitude: ' + location.longitude + '; Latitude: ' + location.latitude;
         newItem.find('.content .description .location span').html(locationContent);
-        newItem.find('.content .description .time span').html(data.records[i].timestamp.slice(0, 10) +
-          ' ' + data.records[i].timestamp.slice(11, 19));
+        timestamp = new Date(data.records[i].timestamp);
+        newItem.find('.content .description .time span').html(timestamp.toString().substring(4, 24));
         newItem.appendTo('#records-list');
       } catch (err) {
         // nothing to be done
