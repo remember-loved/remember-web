@@ -50,7 +50,6 @@ function initialize() {
           position: new google.maps.LatLng(location.longitude, location.latitude),
           map: map,
           title: timestamp.toString().substring(4, 24),
-          icon: imagePath
         });
       } catch (err) {
         // nothing to be done
@@ -58,13 +57,7 @@ function initialize() {
     }
   }
 
-  // displayingLocationMarkers();
-
-  var marker = new google.maps.Marker({
-      position: mapCenter,
-      map: map,
-      title: 'Hello World!'
-  });
+  displayingLocationMarkers();
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
