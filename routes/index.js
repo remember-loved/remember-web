@@ -6,7 +6,7 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {title: 'Remember loved ones'});
+  res.render('index', {title: 'Remember loved ones', 'user': req.user});
 });
 
 /* GET signup page. */
@@ -19,6 +19,7 @@ router.get('/login', function (req, res, next) {
   res.render('login', {title: 'Login'});
 });
 
+/* POST to log user in */
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
@@ -51,6 +52,14 @@ router.get('/device/:deviceId', function (req, res, next) {
   res.render('device', {'deviceId': req.params.deviceId, 'title': 'Device', 'user': req.user});
 });
 
+/* GET device map page */
+router.get('/device-map/:deviceId', function (req, res, next) {
+  if (!req.user) {
+    return next(new Error('Please login first to view the page'));
+  }
+  res.render('device-map', {'deviceId': req.params.deviceId, 'title': 'Device Map', 'user': req.user});
+});
+
 /* POST to create a new record */
 router.post('/api/records/', function (req, res, next) {
   var record = {};
@@ -75,7 +84,7 @@ router.post('/api/records/', function (req, res, next) {
   })
 });
 
-/* GET records for a device with sepecified deviceID */
+/* GET records for a device with specified deviceID */
 router.get('/api/records/:deviceId', function (req, res, next) {
   var deviceId = req.params.deviceId;
   var pageNum = req.query.pageNum || 1;
@@ -84,7 +93,20 @@ router.get('/api/records/:deviceId', function (req, res, next) {
   if (!user) {
     return res.json({'error': 'No such user'});
   }
-  if (user.relativeDeviceIds.indexOf(deviceId) === -1) {
+  function isUserAbleToViewDevice(user, deviceId) {
+    if (!user) {
+      return false;
+    }
+    var isAbleTo = false;
+    for (var i = 0; i < user.relativeDeviceIds.length; i++) {
+      if (user.relativeDeviceIds[i].deviceId === deviceId) {
+        isAbleTo = true;
+        return isAbleTo;
+      }
+    }
+    return isAbleTo;
+  }
+  if (!isUserAbleToViewDevice(user, deviceId)) {
     return res.json({'error': 'You are not allowed to view current device'});
   }
   dbManager.getRecords(deviceId, pageNum, function (err, records) {

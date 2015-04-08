@@ -1,6 +1,6 @@
-extends layout
+extends contentlayout
 
-block content
+block main-frame
   div(class='ui segment narrow')
     div(class='ui segment stacked inverted blue block header')
       h3 Welcome, #{user.userName}
@@ -18,7 +18,7 @@ block content
       each val, idx in user.relativeDeviceIds
         div(class='field')
           label Device
-          a(class='ui button', href='/device/#{val}') #{val}
+          a(class='ui button', href='/device/#{val.deviceId}') #{val.deviceId}
       div(class='field')
         input(type='submit', class='ui red submit button', value='Save', style='display: none;')
 
