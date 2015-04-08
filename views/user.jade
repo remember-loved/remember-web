@@ -18,7 +18,7 @@ block main-frame
       each val, idx in user.relativeDeviceIds
         div(class='field')
           label Device
-          a(class='ui button', href='/device/#{val}') #{val}
+          a(class='ui button', href='/device/#{val.deviceId}') #{val.deviceId}
       div(class='field')
         input(type='submit', class='ui red submit button', value='Save', style='display: none;')
 

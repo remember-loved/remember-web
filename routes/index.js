@@ -84,7 +84,7 @@ router.post('/api/records/', function (req, res, next) {
   })
 });
 
-/* GET records for a device with sepecified deviceID */
+/* GET records for a device with specified deviceID */
 router.get('/api/records/:deviceId', function (req, res, next) {
   var deviceId = req.params.deviceId;
   var pageNum = req.query.pageNum || 1;
@@ -93,7 +93,20 @@ router.get('/api/records/:deviceId', function (req, res, next) {
   if (!user) {
     return res.json({'error': 'No such user'});
   }
-  if (user.relativeDeviceIds.indexOf(deviceId) === -1) {
+  function isUserAbleToViewDevice(user, deviceId) {
+    if (!user) {
+      return false;
+    }
+    var isAbleTo = false;
+    for (var i = 0; i < user.relativeDeviceIds.length; i++) {
+      if (user.relativeDeviceIds[i].deviceId === deviceId) {
+        isAbleTo = true;
+        return isAbleTo;
+      }
+    }
+    return isAbleTo;
+  }
+  if (!isUserAbleToViewDevice(user, deviceId)) {
     return res.json({'error': 'You are not allowed to view current device'});
   }
   dbManager.getRecords(deviceId, pageNum, function (err, records) {

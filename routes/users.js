@@ -22,7 +22,11 @@ router.post('/', function (req, res, next) {
     // response with err
   }
   if (req.body.deviceId) {
-    user.relativeDeviceIds = [req.body.deviceId];
+    user.relativeDeviceIds = [{
+      deviceId: req.body.deviceId,
+      location: req.body.location,
+      range: req.body.range
+    }];
   } else {
     // response with err
   }

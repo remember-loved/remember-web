@@ -6,6 +6,10 @@ block main-frame
     form(class='ui form', id='device-form')
       input(type='hidden', name='userName', value='#{user.userName}')
       input(type='hidden', name='deviceId', value='#{deviceId}')
+      each val, idx in user.relativeDeviceIds
+        if val.deviceId === deviceId
+          input(type='hidden', name='userLocation', value='#{val.location}')
+          input(type='hidden', name='userRange', value='#{val.range}')
     div(class='ui list', id='records-list', style='display: none;')
       div(class='item', id='sample-item', style='display: none;')
         i.icon.right.triangle

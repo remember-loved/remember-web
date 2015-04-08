@@ -7,6 +7,10 @@ block main-frame
     form(class='ui form', id='device-form')
       input(type='hidden', name='userName', value='#{user.userName}')
       input(type='hidden', name='deviceId', value='#{deviceId}')
-    div(class='ui list')
+      each val, idx in user.relativeDeviceIds
+        if val.deviceId === deviceId
+          input(type='hidden', name='userLocation', value='#{val.location}')
+          input(type='hidden', name='userRange', value='#{val.range}')
+    div(class='ui segment')
       div#map-canvas(style='height:500px; width:700px; margin:29px auto;')
   script(type='text/javascript', src='/javascripts/device-map.js')
