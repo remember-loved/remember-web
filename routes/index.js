@@ -6,7 +6,7 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {title: 'Remember loved ones'});
+  res.render('index', {title: 'Remember loved ones', 'user': req.user});
 });
 
 /* GET signup page. */
@@ -19,6 +19,7 @@ router.get('/login', function (req, res, next) {
   res.render('login', {title: 'Login'});
 });
 
+/* POST to log user in */
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
@@ -49,6 +50,14 @@ router.get('/device/:deviceId', function (req, res, next) {
     return next(new Error('Please login first to view the page'));
   }
   res.render('device', {'deviceId': req.params.deviceId, 'title': 'Device', 'user': req.user});
+});
+
+/* GET device map page */
+router.get('/device-map/:deviceId', function (req, res, next) {
+  if (!req.user) {
+    return next(new Error('Please login first to view the page'));
+  }
+  res.render('device-map', {'deviceId': req.params.deviceId, 'title': 'Device Map', 'user': req.user});
 });
 
 /* POST to create a new record */

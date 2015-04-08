@@ -1,11 +1,12 @@
-extends layout
+extends contentlayout
 
-block content
+block main-frame
+  script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?v=3.exp')
   div(class='ui segment narrow')
-    div(class='ui segment stacked inverted blue block header')
-      h3 Traces of #{deviceId}
-    div(class='divided very relaxed list')
-      div(class='item')
-        div(class='content')
-          div(class='header') Safe
-          div Location: ... @ DateTime 
+    h3(class='ui segment stacked inverted blue block header') Traces of #{deviceId}
+    form(class='ui form', id='device-form')
+      input(type='hidden', name='userName', value='#{user.userName}')
+      input(type='hidden', name='deviceId', value='#{deviceId}')
+    div(class='ui list')
+      div#map-canvas(style='height:500px;width:700px;')
+  script(type='text/javascript', src='/javascripts/device-map.js')
