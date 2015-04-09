@@ -11,6 +11,13 @@ dbManager.getUserByName = function (userName, callback) {
   User.findOne({'userName': userName}).exec(callback);
 };
 
+dbManager.updateUserDevicesByName = function (userName, updateUser, callback) {
+  User.findOne({'userName': userName}).exec(function (err, user) {
+    user.relativeDeviceIds = updateUser.relativeDeviceIds;
+    user.save(callback);
+  });
+};
+
 dbManager.getUserById = function (userId, callback) {
   User.findById(userId, callback);
 };

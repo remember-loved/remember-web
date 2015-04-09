@@ -6,6 +6,7 @@ var router = express.Router();
 /*Create a new user*/
 router.post('/', function (req, res, next) {
   var user = {};
+  var location = {};
   if (req.body.userName) {
     user.userName = req.body.userName;
   } else {
@@ -22,9 +23,11 @@ router.post('/', function (req, res, next) {
     // response with err
   }
   if (req.body.deviceId) {
+    location.longitude = req.body.longitude;
+    location.latitude = req.body.latitude;
     user.relativeDeviceIds = [{
       deviceId: req.body.deviceId,
-      location: req.body.location,
+      location: JSON.stringify(location),
       range: req.body.range
     }];
   } else {
@@ -35,7 +38,7 @@ router.post('/', function (req, res, next) {
       console.log(user);
       return next(err);
     }
-    res.redirect('/users/' + createdUser.userName);
+    res.redirect('/login');
   });
 });
 
@@ -43,6 +46,41 @@ router.post('/', function (req, res, next) {
 router.get('/:userName', function (req, res, next) {
   var userName = req.params.userName;
   dbManager.getUserByName(userName, function (err, user) {
+    if (err) {
+      return next(err);
+    }
+    res.render('user', {'user': user, 'title': user.userName});
+  });
+});
+
+/*Get information about a user*/
+router.get('/:userName/edit', function (req, res, next) {
+  var userName = req.params.userName;
+  dbManager.getUserByName(userName, function (err, user) {
+    if (err) {
+      return next(err);
+    }
+    res.render('user-edit', {'user': user, 'title': 'Edit ' + user.userName});
+  });
+});
+
+/*Update a user's information*/
+router.post('/:userName', function (req, res, next) {
+  var userName = req.params.userName;
+  var updateUser = {};
+  var location = {};
+  if (req.body.deviceId) {
+    location.longitude = req.body.longitude;
+    location.latitude = req.body.latitude;
+    updateUser.relativeDeviceIds = [{
+      deviceId: req.body.deviceId,
+      location: JSON.stringify(location),
+      range: req.body.range
+    }];
+  } else {
+    // response with err
+  }
+  dbManager.updateUserDevicesByName(userName, updateUser, function (err, user) {
     if (err) {
       return next(err);
     }
