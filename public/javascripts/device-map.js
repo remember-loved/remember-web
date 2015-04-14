@@ -48,12 +48,12 @@ function initialize() {
         timestamp = new Date(record.timestamp);
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(location.longitude, location.latitude),
-          map: map,
           title: timestamp.toString().substring(4, 24),
         });
       } catch (err) {
         // nothing to be done
       }
+      marker.setMap(map);
     }
   }
 
