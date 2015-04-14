@@ -1,11 +1,12 @@
 'use strict';
+var map;
 function initialize() {
   var mapCenter = new google.maps.LatLng(1.2967181, 103.7763725);
   var mapOptions = {
     zoom: 15,
     center: mapCenter
   };
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
   function displayingLocationMarkers() {
     var pageNum = 1;
@@ -57,7 +58,7 @@ function initialize() {
     }
   }
 
-  displayingLocationMarkers();
+  setTimeout(displayingLocationMarkers, 3000);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
