@@ -59,7 +59,12 @@ function initialize() {
     }
   }
 
-  setTimeout(displayingLocationMarkers, 3000);
+  // setTimeout(displayingLocationMarkers, 3000);
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(1.2967181, 103.7763725),
+    title: 'test',
+    map: map
+  });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
