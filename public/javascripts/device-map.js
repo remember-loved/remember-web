@@ -48,7 +48,7 @@ function initialize() {
         location = JSON.parse(record.location.replace(new RegExp('\'', 'g'), '\"'));
         timestamp = new Date(record.timestamp);
         marker = new google.maps.Marker({
-          position: new google.maps.LatLng(location.longitude, location.latitude),
+          position: new google.maps.LatLng(location.latitude, location.longitude),
           title: timestamp.toString().substring(4, 24),
           map: map
         });
