@@ -55,10 +55,11 @@ function initialize() {
       } catch (err) {
         console.log('Error in displaying marker' + err.message);
       }
+      marker.setMap(map);
     }
   }
 
-  setTimeout(displayingLocationMarkers, 5000);
+  setTimeout(displayingLocationMarkers, 3000);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
