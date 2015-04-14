@@ -21,24 +21,18 @@ router.get('/login', function (req, res, next) {
 
 /* POST to log user in */
 router.post('/login', function(req, res, next) {
-  console.log('Posting to login');
   passport.authenticate('local', function(err, user, info) {
-    console.log('Callback of passport');
     if (err) {
-      console.log('Error inside passport');
       return next(err);
     }
     if (!user) {
-      console.log('Error no such user, re login');
       return res.redirect('/login');
     }
     req.logIn(user, function(err) {
       if (err) {
-        console.log('Login call error');
         return next(err);
       }
       var redirectPath = '/users/' + user.userName;
-      console.log('Should be redirecting now');
       return res.redirect(redirectPath);
     });
   })(req, res, next);
