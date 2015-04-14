@@ -1,13 +1,6 @@
 'use strict';
 var map;
 function initialize() {
-  var mapCenter = new google.maps.LatLng(1.2967181, 103.7763725);
-  var mapOptions = {
-    zoom: 15,
-    center: mapCenter
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
   function displayingLocationMarkers() {
     var pageNum = 1;
     var userName = $('#device-form input[name=userName]').val();
@@ -24,6 +17,13 @@ function initialize() {
     };
 
     var requestDoneHandler = function (data) {
+      var mapCenter = new google.maps.LatLng(1.2967181, 103.7763725);
+      var mapOptions = {
+        zoom: 15,
+        center: mapCenter
+      };
+      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
       if (data.error) {
         return window.alert('Unexpected error happened when requesting for new records');
       }
@@ -36,11 +36,11 @@ function initialize() {
       }
       pageNum++;
     };
+
     var requestFailHanlder = function (err) {
       console.log('Error in records-fetching:', err.message);
       window.alert('Unexpected error happened when requesting for new records');
     };
-    requestForRecords(requestDoneHandler, requestFailHanlder);
 
     function makingMarkerForRecord(record, imagePath) {
       var location, timestamp, marker;
@@ -57,14 +57,11 @@ function initialize() {
       }
       marker.setMap(map);
     }
+
+    requestForRecords(requestDoneHandler, requestFailHanlder);
   }
 
-  // setTimeout(displayingLocationMarkers, 3000);
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(1.2967181, 103.7763725),
-    title: 'test',
-    map: map
-  });
+  displayingLocationMarkers();
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
