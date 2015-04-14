@@ -50,15 +50,15 @@ function initialize() {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(location.longitude, location.latitude),
           title: timestamp.toString().substring(4, 24),
+          map: map
         });
       } catch (err) {
-        // nothing to be done
+        console.log('Error in displaying marker' + err.message);
       }
-      marker.setMap(map);
     }
   }
 
-  setTimeout(displayingLocationMarkers, 3000);
+  setTimeout(displayingLocationMarkers, 5000);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
