@@ -8,6 +8,8 @@ $(document).ready(function () {
   var safeRange
   try {
     safeLocation = JSON.parse($('#device-form input[name=userLocation]').val().replace(new RegExp('\'', 'g'), '\"'));
+    safeLocation.longitude = parseFloat(safeLocation.longitude);
+    safeLocation.latitude = parseFloat(safeLocation.latitude);
     safeRange = parseFloat($('#device-form input[name=userRange]').val());
   } catch (error) {
     // nothing to be done

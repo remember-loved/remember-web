@@ -20,5 +20,5 @@ block main-frame
           label Device
           a(class='ui button', href='/device/#{val.deviceId}') #{val.deviceId}
       div(class='field')
-        input(type='submit', class='ui red submit button', value='Save', style='display: none;')
+        a(class='ui blue mini button signup', href='/users/#{user.userName}/edit') Edit
 

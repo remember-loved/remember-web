@@ -10,6 +10,7 @@ block main-frame
         if val.deviceId === deviceId
           input(type='hidden', name='userLocation', value='#{val.location}')
           input(type='hidden', name='userRange', value='#{val.range}')
+    a(class='ui blue mini button signup', href='/users/#{user.userName}') View User
     div(class='ui list', id='records-list', style='display: none;')
       div(class='item', id='sample-item', style='display: none;')
         i.icon.right.triangle
